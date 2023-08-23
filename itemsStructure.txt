@@ -1,0 +1,60 @@
+{nome: ,
+imagem: ,
+quantidade: ,
+multslot: ,
+capacidadeTotal: ,
+tipo: ,
+info: ,
+ataque: ,
+defesa: ,
+velocidade: ,
+slots: ,
+health: ,
+mana: ,
+level: ,
+compra: {diamante: ,ouro: },
+venda: {diamante: ,ouro: },
+use: function(){}
+}
+class Item {
+	constructor(config){
+		nome = config.nome || 'Desconhecido';
+		imagem = new Image();
+		quantidade = config.quantidade || 0;
+		multslot = config.multslot || false;
+		capacidadeTotal = config.capacidadeTotal || 500;
+		tipo = config.tipo || 'Desconhecido';
+		info = config.info || 'Sem informação';
+		ataque = config.ataque || 0;
+		defesa = config.defesa || 0;
+		velocidade = config.velocidade || 0;
+		slots = config.slots || 0;
+		health = config.health || 0;
+		mana = config.mana || 0;
+		level = config.level || 0;
+		compra = config.compra || false;
+		venda = config.venda || false;
+		use = config.use || false;
+	}
+}
+
+
+{
+nome: 'Ouro',
+imagem: new Image(),
+quantidade: 0,
+multslot: false,
+capacidadeTotal: 999999999,
+tipo: tipo[1],
+info: 'Tudo podese trocar por moedas, tenha-as suficiente',
+ataque: 0,
+defesa: 0,
+velocidade: 0,
+slots: 0,
+health: 0,
+mana: 0,
+level: 0,
+compra: false,
+venda: false,
+use: function(){}
+}

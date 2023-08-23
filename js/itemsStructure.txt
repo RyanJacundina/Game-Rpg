@@ -1,0 +1,17 @@
+{nome: ,
+imagem: ,
+quantidade: ,
+multslot: ,
+tipo: ,
+info: ,
+ataque: ,
+defesa: ,
+velocidade: ,
+slots: ,
+health: ,
+mana: ,
+level: ,
+compra: {diamante: ,ouro: },
+venda: {diamante: ,ouro: },
+use: function(){}
+}
