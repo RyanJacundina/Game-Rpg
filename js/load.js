@@ -40,7 +40,6 @@ Promise.all(imagePaths.map(loadImage))
     // ... and so on for other images
 
     // Call the loop function and pass the loaded images if needed
-    createMaps();
     loop();
   })
   .catch(error => {

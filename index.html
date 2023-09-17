@@ -3,44 +3,100 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Game Rpg</title>
+	<script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-firestore.js"></script>
+	<script src="js/firebase.js"></script>
 	<style>
 		html{
-			height: 100%;
 		}
 		body{
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100%;
 			margin: 0;
 			padding: 0;
 			background: #3d3d3d;
+			height: 100vh;
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 		img {
 			image-rendering: pixelated;
 			image-rendering: crisp-edges;
 			image-rendering: -moz-crisp-edges;
 		}
+		#canvas-container {
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 		canvas{
 			border: solid 1px;
+			display: block;
+			background: #3d3d3d;
 			image-rendering: pixelated;
 			image-rendering: crisp-edges;
 			image-rendering: -moz-crisp-edges;
-			width: 676px;
-			height: 364px;
+		}
+		.overlay {
+ 			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.overlay:hover {
+			/*background: rgba(255, 255, 255, 0.5);*/ /* Cor de fundo semi-transparente rgba(0, 0, 0, 0.5)*/
+		}
+		.content {
+ 			position: absolute;
+			display: flex;
+			flex-direction: column;
+ 			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: white;
+			font-size: 24px;
+		}
+		.screen-input-block{
+			width: 78px;
+			height: 78px;
+		}
+		.half-screen-input-block{
+			width: 39px;
+		}
+		/*.screen-input-block:hover{
+			background: rgba(255, 255, 255, 0.5);
+		}*/
+		.screen-input-row{
+			display: flex;
+			flex-direction: row;
 		}
 	</style>
 </head>
 <body>
-	<canvas id="myCanvas" width="200" height="100"></canvas>
-	<script src="js/config.js"></script>
+<div id="canvas-container">
+	<canvas class="game-canvas" width="1404" height="702"></canvas>
+	<div class="overlay">
+		<div class="content">
+			<div id="screen-input-row--104" class="screen-input-row"><div id="screen-input--234" class="screen-input-block half-screen-input-block"></div><div id="screen-input--208" class="screen-input-block"></div><div id="screen-input--182" class="screen-input-block"></div><div id="screen-input--156" class="screen-input-block"></div><div id="screen-input--130" class="screen-input-block"></div><div id="screen-input--104" class="screen-input-block"></div><div id="screen-input--78" class="screen-input-block"></div><div id="screen-input--52" class="screen-input-block"></div><div id="screen-input--26" class="screen-input-block"></div><div id="screen-input-0" class="screen-input-block"></div><div id="screen-input-26" class="screen-input-block"></div><div id="screen-input-52" class="screen-input-block"></div><div id="screen-input-78" class="screen-input-block"></div><div id="screen-input-104" class="screen-input-block"></div><div id="screen-input-130" class="screen-input-block"></div><div id="screen-input-156" class="screen-input-block"></div><div id="screen-input-182" class="screen-input-block"></div><div id="screen-input-208" class="screen-input-block"></div><div id="screen-input-234" class="screen-input-block half-screen-input-block"></div></div><div id="screen-input-row--78" class="screen-input-row"><div id="screen-input--234" class="screen-input-block half-screen-input-block"></div><div id="screen-input--208" class="screen-input-block"></div><div id="screen-input--182" class="screen-input-block"></div><div id="screen-input--156" class="screen-input-block"></div><div id="screen-input--130" class="screen-input-block"></div><div id="screen-input--104" class="screen-input-block"></div><div id="screen-input--78" class="screen-input-block"></div><div id="screen-input--52" class="screen-input-block"></div><div id="screen-input--26" class="screen-input-block"></div><div id="screen-input-0" class="screen-input-block"></div><div id="screen-input-26" class="screen-input-block"></div><div id="screen-input-52" class="screen-input-block"></div><div id="screen-input-78" class="screen-input-block"></div><div id="screen-input-104" class="screen-input-block"></div><div id="screen-input-130" class="screen-input-block"></div><div id="screen-input-156" class="screen-input-block"></div><div id="screen-input-182" class="screen-input-block"></div><div id="screen-input-208" class="screen-input-block"></div><div id="screen-input-234" class="screen-input-block half-screen-input-block"></div></div><div id="screen-input-row--52" class="screen-input-row"><div id="screen-input--234" class="screen-input-block half-screen-input-block"></div><div id="screen-input--208" class="screen-input-block"></div><div id="screen-input--182" class="screen-input-block"></div><div id="screen-input--156" class="screen-input-block"></div><div id="screen-input--130" class="screen-input-block"></div><div id="screen-input--104" class="screen-input-block"></div><div id="screen-input--78" class="screen-input-block"></div><div id="screen-input--52" class="screen-input-block"></div><div id="screen-input--26" class="screen-input-block"></div><div id="screen-input-0" class="screen-input-block"></div><div id="screen-input-26" class="screen-input-block"></div><div id="screen-input-52" class="screen-input-block"></div><div id="screen-input-78" class="screen-input-block"></div><div id="screen-input-104" class="screen-input-block"></div><div id="screen-input-130" class="screen-input-block"></div><div id="screen-input-156" class="screen-input-block"></div><div id="screen-input-182" class="screen-input-block"></div><div id="screen-input-208" class="screen-input-block"></div><div id="screen-input-234" class="screen-input-block half-screen-input-block"></div></div><div id="screen-input-row--26" class="screen-input-row"><div id="screen-input--234" class="screen-input-block half-screen-input-block"></div><div id="screen-input--208" class="screen-input-block"></div><div id="screen-input--182" class="screen-input-block"></div><div id="screen-input--156" class="screen-input-block"></div><div id="screen-input--130" class="screen-input-block"></div><div id="screen-input--104" class="screen-input-block"></div><div id="screen-input--78" class="screen-input-block"></div><div id="screen-input--52" class="screen-input-block"></div><div id="screen-input--26" class="screen-input-block"></div><div id="screen-input-0" class="screen-input-block"></div><div id="screen-input-26" class="screen-input-block"></div><div id="screen-input-52" class="screen-input-block"></div><div id="screen-input-78" class="screen-input-block"></div><div id="screen-input-104" class="screen-input-block"></div><div id="screen-input-130" class="screen-input-block"></div><div id="screen-input-156" class="screen-input-block"></div><div id="screen-input-182" class="screen-input-block"></div><div id="screen-input-208" class="screen-input-block"></div><div id="screen-input-234" class="screen-input-block half-screen-input-block"></div></div><div id="screen-input-row-0" class="screen-input-row"><div id="screen-input--234" class="screen-input-block half-screen-input-block"></div><div id="screen-input--208" class="screen-input-block"></div><div id="screen-input--182" class="screen-input-block"></div><div id="screen-input--156" class="screen-input-block"></div><div id="screen-input--130" class="screen-input-block"></div><div id="screen-input--104" class="screen-input-block"></div><div id="screen-input--78" class="screen-input-block"></div><div id="screen-input--52" class="screen-input-block"></div><div id="screen-input--26" class="screen-input-block"></div><div id="screen-input-0" class="screen-input-block"></div><div id="screen-input-26" class="screen-input-block"></div><div id="screen-input-52" class="screen-input-block"></div><div id="screen-input-78" class="screen-input-block"></div><div id="screen-input-104" class="screen-input-block"></div><div id="screen-input-130" class="screen-input-block"></div><div id="screen-input-156" class="screen-input-block"></div><div id="screen-input-182" class="screen-input-block"></div><div id="screen-input-208" class="screen-input-block"></div><div id="screen-input-234" class="screen-input-block half-screen-input-block"></div></div><div id="screen-input-row-26" class="screen-input-row"><div id="screen-input--234" class="screen-input-block half-screen-input-block"></div><div id="screen-input--208" class="screen-input-block"></div><div id="screen-input--182" class="screen-input-block"></div><div id="screen-input--156" class="screen-input-block"></div><div id="screen-input--130" class="screen-input-block"></div><div id="screen-input--104" class="screen-input-block"></div><div id="screen-input--78" class="screen-input-block"></div><div id="screen-input--52" class="screen-input-block"></div><div id="screen-input--26" class="screen-input-block"></div><div id="screen-input-0" class="screen-input-block"></div><div id="screen-input-26" class="screen-input-block"></div><div id="screen-input-52" class="screen-input-block"></div><div id="screen-input-78" class="screen-input-block"></div><div id="screen-input-104" class="screen-input-block"></div><div id="screen-input-130" class="screen-input-block"></div><div id="screen-input-156" class="screen-input-block"></div><div id="screen-input-182" class="screen-input-block"></div><div id="screen-input-208" class="screen-input-block"></div><div id="screen-input-234" class="screen-input-block half-screen-input-block"></div></div><div id="screen-input-row-52" class="screen-input-row"><div id="screen-input--234" class="screen-input-block half-screen-input-block"></div><div id="screen-input--208" class="screen-input-block"></div><div id="screen-input--182" class="screen-input-block"></div><div id="screen-input--156" class="screen-input-block"></div><div id="screen-input--130" class="screen-input-block"></div><div id="screen-input--104" class="screen-input-block"></div><div id="screen-input--78" class="screen-input-block"></div><div id="screen-input--52" class="screen-input-block"></div><div id="screen-input--26" class="screen-input-block"></div><div id="screen-input-0" class="screen-input-block"></div><div id="screen-input-26" class="screen-input-block"></div><div id="screen-input-52" class="screen-input-block"></div><div id="screen-input-78" class="screen-input-block"></div><div id="screen-input-104" class="screen-input-block"></div><div id="screen-input-130" class="screen-input-block"></div><div id="screen-input-156" class="screen-input-block"></div><div id="screen-input-182" class="screen-input-block"></div><div id="screen-input-208" class="screen-input-block"></div><div id="screen-input-234" class="screen-input-block half-screen-input-block"></div></div><div id="screen-input-row-78" class="screen-input-row"><div id="screen-input--234" class="screen-input-block half-screen-input-block"></div><div id="screen-input--208" class="screen-input-block"></div><div id="screen-input--182" class="screen-input-block"></div><div id="screen-input--156" class="screen-input-block"></div><div id="screen-input--130" class="screen-input-block"></div><div id="screen-input--104" class="screen-input-block"></div><div id="screen-input--78" class="screen-input-block"></div><div id="screen-input--52" class="screen-input-block"></div><div id="screen-input--26" class="screen-input-block"></div><div id="screen-input-0" class="screen-input-block"></div><div id="screen-input-26" class="screen-input-block"></div><div id="screen-input-52" class="screen-input-block"></div><div id="screen-input-78" class="screen-input-block"></div><div id="screen-input-104" class="screen-input-block"></div><div id="screen-input-130" class="screen-input-block"></div><div id="screen-input-156" class="screen-input-block"></div><div id="screen-input-182" class="screen-input-block"></div><div id="screen-input-208" class="screen-input-block"></div><div id="screen-input-234" class="screen-input-block half-screen-input-block"></div></div><div id="screen-input-row-104" class="screen-input-row"><div id="screen-input--234" class="screen-input-block half-screen-input-block"></div><div id="screen-input--208" class="screen-input-block"></div><div id="screen-input--182" class="screen-input-block"></div><div id="screen-input--156" class="screen-input-block"></div><div id="screen-input--130" class="screen-input-block"></div><div id="screen-input--104" class="screen-input-block"></div><div id="screen-input--78" class="screen-input-block"></div><div id="screen-input--52" class="screen-input-block"></div><div id="screen-input--26" class="screen-input-block"></div><div id="screen-input-0" class="screen-input-block"></div><div id="screen-input-26" class="screen-input-block"></div><div id="screen-input-52" class="screen-input-block"></div><div id="screen-input-78" class="screen-input-block"></div><div id="screen-input-104" class="screen-input-block"></div><div id="screen-input-130" class="screen-input-block"></div><div id="screen-input-156" class="screen-input-block"></div><div id="screen-input-182" class="screen-input-block"></div><div id="screen-input-208" class="screen-input-block"></div><div id="screen-input-234" class="screen-input-block half-screen-input-block"></div></div>
+		</div>
+	</div>
+</div>
+	<script src="js/utils.js"></script>
+	<script src="js/DirectionInput.js"></script>
+	<script src="js/Sprite.js"></script>
 	<script src="js/GameObject.js"></script>
-	<script src="js/Map.js"></script>
-	<script src="js/Items.js"></script>
-	<script src="js/Inventory.js"></script>
-	<script src="js/Enemy.js"></script>
+	<script src="js/Character.js"></script>
 	<script src="js/Player.js"></script>
+	<script src="js/Enemy.js"></script>
+	<script src="js/Overworld.js"></script>
+	<script src="js/OverworldMap.js"></script>
+	<script src="js/OverworldEvent.js"></script>
+	<script src="js/KeyPressListener.js"></script>
 	<script src="init.js"></script>
-	<script src="js/load.js"></script>
 </body>
 </html>
