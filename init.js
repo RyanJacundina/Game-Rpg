@@ -15,7 +15,7 @@ if (elemento.requestFullscreen) {
 
 (function() {
 
-  document.body.style.zoom = "100%";
+  //document.body.style.zoom = "100%";
 
   const overworld = new Overworld({
     element: document.querySelector('body'),
